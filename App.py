@@ -1,8 +1,13 @@
 import os
 import telebot
 
-# Get Telegram token from Railway environment
 TOKEN = os.getenv("TELEGRAM_TOKEN")
+
+if not TOKEN:
+    print("ERROR: TELEGRAM_TOKEN not found!")
+    exit()
+
+print("Token loaded successfully")
 
 bot = telebot.TeleBot(TOKEN)
 
