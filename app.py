@@ -1,24 +1,22 @@
 import os
 import telebot
 
+print("Starting app...")
+
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 
-if not TOKEN:
-    print("ERROR: TELEGRAM_TOKEN not found!")
-    exit()
+print("Token value is:", TOKEN)
 
-print("Token loaded successfully")
+if not TOKEN:
+    print("TOKEN IS NONE — EXITING")
+    exit()
 
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
-def send_welcome(message):
-    bot.reply_to(message, "🚀 Trading Bot is LIVE and Connected!")
+def start(message):
+    bot.reply_to(message, "Bot is live 🚀")
 
-@bot.message_handler(commands=['ping'])
-def ping(message):
-    bot.reply_to(message, "✅ Bot is running properly.")
-
-print("Bot is starting...")
+print("Bot starting polling...")
 
 bot.infinity_polling()
